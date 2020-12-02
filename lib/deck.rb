@@ -22,7 +22,15 @@ class Deck
     ((high_ranking_cards.length.to_f / @cards.length) * 100).round(2)
   end
 
+  def remove_card
+    @cards.shift
+  end
 
+  def add_card(card)
+    @cards << card
+  end
+
+end
 
 
 # require 'pry'; binding.pry
