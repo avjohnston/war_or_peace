@@ -23,7 +23,7 @@ class Deck
   end
 
   def remove_card
-    @cards.shift
+    @cards.pop
   end
 
   def add_card(card)
@@ -34,4 +34,3 @@ end
 
 
 # require 'pry'; binding.pry
-end
