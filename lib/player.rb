@@ -1,6 +1,5 @@
-require './card'
-require './deck'
-require './player'
+require './lib/card'
+require './lib/deck'
 
 class Player
   attr_reader :player
@@ -15,5 +14,3 @@ class Player
   end
 
 end
-
-require 'pry'; binding.pry
