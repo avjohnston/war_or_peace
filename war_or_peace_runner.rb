@@ -65,3 +65,33 @@ card35, card37, card39, card42, card45, card46, card49, card52].shuffle!
 deck2 = [card2, card4, card6, card9, card10, card12, card15, card16, card19,
 card20, card22, card24, card25, card27, card29, card30, card31, card33,
 card35, card37, card39, card42, card45, card46, card49, card52].shuffle!
+
+deck_1 = Deck.new(deck1)
+deck_2 = Deck.new(deck2)
+
+player1 = Player.new('Andrew', deck_1)
+player2 = Player.new('Janis', deck_2)
+
+
+class StartGame
+  def initialize(player1, player2)
+    @player1 = player1
+    @player2 = player2
+  end
+
+  def start
+    "Welcome to War! (or Peace) This game will be played with 52 cards."
+    "The palyers today will be #{@player1} and #{@player2}."
+    "Type 'GO' to start the game."
+
+    answer = gets.chomp
+
+    if
+      answer = "GO" || "Go" || "go"
+      puts "Now starting game..."
+    end
+
+  end
+
+
+end
