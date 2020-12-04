@@ -57,3 +57,11 @@ card49 = :diamond, 'Jack', 11
 card50 = :diamond, 'Queen', 12
 card51 = :diamond, 'King', 13
 card52 = :diamond, 'Ace', 14
+
+deck1 = [card2, card4, card6, card9, card10, card12, card15, card16, card19,
+card20, card22, card24, card25, card27, card29, card30, card31, card33,
+card35, card37, card39, card42, card45, card46, card49, card52].shuffle!
+
+deck2 = [card2, card4, card6, card9, card10, card12, card15, card16, card19,
+card20, card22, card24, card25, card27, card29, card30, card31, card33,
+card35, card37, card39, card42, card45, card46, card49, card52].shuffle!
