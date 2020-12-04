@@ -21,7 +21,7 @@ class Deck
   end
 
   def remove_card
-    @cards.pop
+    @cards.shift
   end
 
   def add_card(card)
