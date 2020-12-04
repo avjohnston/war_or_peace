@@ -11,6 +11,10 @@ class Turn
     @spoils_of_war = []
   end
 
+  def spoils_of_war
+    @spoils_of_war
+  end
+
   def type
     if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
       :mutually_assured_destruction
@@ -25,10 +29,10 @@ class Turn
 
 
   def winner
-    return player1.name if type == :basic && player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
-    return player2.name if type == :basic && player2.deck.rank_of_card_at(0) > player1.deck.rank_of_card_at(0)
-    return player1.name if type == :war && player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
-    return player2.name if type == :war && player2.deck.rank_of_card_at(2) > player1.deck.rank_of_card_at(2)
+    return @player1 if type == :basic && player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
+    return @player2 if type == :basic && player2.deck.rank_of_card_at(0) > player1.deck.rank_of_card_at(0)
+    return @player1 if type == :war && player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
+    return @player2 if type == :war && player2.deck.rank_of_card_at(2) > player1.deck.rank_of_card_at(2)
     return "No Winner" if type == :mutually_assured_destruction
   end
 
@@ -39,22 +43,20 @@ class Turn
       @spoils_of_war << player2.deck.remove_card
 
     elsif type == :war
-      3.times do
-        @spoils_of_war << player1.deck.remove_card
-        @spoils_of_war << player2.deck.remove_card
-      end
+        @spoils_of_war << player1.deck.remove_card[0..2]
+        @spoils_of_war << player2.deck.remove_card[0..2]
 
     else
-      3.times do
-        player1.deck.remove_card
-        player2.deck.remove_card
-      end
+        player1.deck.remove_card[0..2]
+        player2.deck.remove_card[0..2]
     end
   end
 
   def award_spoils(winner)
+     @spoils_of_war.map do |card|
+       winner.deck.add_card(card)
+     end
 
   end
-
 
 end
