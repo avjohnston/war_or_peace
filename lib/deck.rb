@@ -29,6 +29,3 @@ class Deck
   end
 
 end
-
-
-# require 'pry'; binding.pry

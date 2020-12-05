@@ -7,6 +7,7 @@ require './lib/turn'
 require 'pry'
 
 class TurnTest < MiniTest::Test
+
   def test_it_exists
     card1 = Card.new(:heart, 'Jack', 11)
     card2 = Card.new(:heart, '10', 10)

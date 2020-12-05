@@ -62,7 +62,7 @@ class DeckTest < MiniTest::Test
     deck = Deck.new(cards)
 
     assert_equal cards, deck.cards
-    assert_equal card3, deck.remove_card
+    assert_equal card1, deck.remove_card
   end
 
   def test_add_card
