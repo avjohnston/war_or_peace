@@ -32,21 +32,18 @@ class Turn
       :basic
     end
 
-
-
-
-
   end
 
 
   def winner
+    return  @player1 if type == :end_of_war && player2.deck.cards.length <= 2
+    return  @player2 if type == :end_of_war && player1.deck.cards.length <= 2
     return @player1 if type == :basic && player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
     return @player2 if type == :basic && player2.deck.rank_of_card_at(0) > player1.deck.rank_of_card_at(0)
     return @player1 if type == :war && player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
     return @player2 if type == :war && player2.deck.rank_of_card_at(2) > player1.deck.rank_of_card_at(2)
     return "No Winner" if type == :mutually_assured_destruction
-    return "#{player1.name} has won the game!" if type == :end_of_war && player2.deck.cards.length <= 2
-    return "#{player2.name} has won the game!" if type == :end_of_war && player1.deck.cards.length <= 2
+
   end
 
 
@@ -60,6 +57,10 @@ class Turn
         @spoils_of_war << player1.deck.remove_card
         @spoils_of_war << player2.deck.remove_card
       end
+
+    elsif type == :end_of_war
+        @spoils_of_war << player1.deck.remove_card
+        @spoils_of_war << player2.deck.remove_card
 
     else
       3.times do

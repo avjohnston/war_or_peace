@@ -48,10 +48,10 @@ class Game
       @turn_counter += 1
 
      if @player1.has_lost? == true
-        puts "~~~~~~~#{player1} has won the game!~~~~~~~"
+        puts "~~~~~~~#{player2.name} has won the game!~~~~~~~"
         break
       elsif @player2.has_lost? == true
-        puts "~~~~~~~#{player2} has won the game!~~~~~~~"
+        puts "~~~~~~~#{player1.name} has won the game!~~~~~~~"
         break
       elsif @turn_counter == 1000001
         puts "~~~~~~~ DRAW ~~~~~~~"
