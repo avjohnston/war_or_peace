@@ -10,12 +10,6 @@ class Game
 
   def start
     puts "Welcome to War! (or Peace) This game will be played with 52 cards."
-    # puts "This game requires 2 players."
-    # puts "Who will be player 1?"
-    # name1 = gets.chomp.to_s
-    # puts "Who will be player 2?"
-    # name2 = gets.chomp.to_s
-    # puts "The players today are #{name1} and #{name2}."
     puts "Our players today are Megan(P1) and Aurora(P2)"
     puts "Type 'GO' to start the game."
     puts "~" * 40
@@ -43,7 +37,8 @@ class Game
       if winner == "No Winner"
         puts winner
       else
-        puts "P1 ~ #{player1.deck.cards[0]} vs P2 ~ #{player2.deck.cards[0]} ~ \n#{winner.name} has won #{turn.spoils_of_war.count} cards."
+        puts "P1 ~ #{@player1.deck.cards[0]} vs P2 ~ #{@player2.deck.cards[0]}"
+        puts "#{winner.name} has won #{turn.spoils_of_war} cards."
       end
       turn.pile_cards
       turn.award_spoils(winner)
@@ -52,10 +47,10 @@ class Game
 
 
      if @player1.has_lost? == true
-        puts "~~~~~~~#{player2.name} has won the game!~~~~~~~"
+        puts "~*~*~*~*~#{player2.name} has won the game!~*~*~*~*~"
         break
       elsif @player2.has_lost? == true
-        puts "~~~~~~~#{player1.name} has won the game!~~~~~~~"
+        puts "~*~*~*~*~#{player1.name} has won the game!~*~*~*~*~"
         break
       elsif @turn_counter == 1000001
         puts "~~~~~~~ DRAW ~~~~~~~"
