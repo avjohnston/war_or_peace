@@ -16,14 +16,14 @@ class Game
     # puts "Who will be player 2?"
     # name2 = gets.chomp.to_s
     # puts "The players today are #{name1} and #{name2}."
-    puts "Our players today are Megan and Aurora"
+    puts "Our players today are Megan(P1) and Aurora(P2)"
     puts "Type 'GO' to start the game."
+    puts "~" * 40
 
     answer = gets.chomp
 
     if answer == "GO" || answer == "Go" || answer == "go"
       puts "Now starting game..."
-
     else
       puts "Goodbye"
     end
@@ -37,15 +37,19 @@ class Game
       turn = Turn.new(player1, player2)
       turn.type
       winner = turn.winner
-      puts "Turn #{@turn_counter} - #{player1.deck.cards[0]} vs #{player2.deck.cards[0]}"
+
+
+      puts "Turn #{@turn_counter}: #{turn.type.capitalize}"
       if winner == "No Winner"
         puts winner
       else
-        puts "#{winner.name} has won this hand."
+        puts "P1 ~ #{player1.deck.cards[0]} vs P2 ~ #{player2.deck.cards[0]} ~ \n#{winner.name} has won #{turn.spoils_of_war.count} cards."
       end
       turn.pile_cards
       turn.award_spoils(winner)
       @turn_counter += 1
+
+
 
      if @player1.has_lost? == true
         puts "~~~~~~~#{player2.name} has won the game!~~~~~~~"

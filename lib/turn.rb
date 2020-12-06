@@ -20,7 +20,10 @@ class Turn
   def type
     if
     player1.deck.cards.length <= 2 || player2.deck.cards.length <= 2 && player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
-      :end_of_war
+      :mutually_assured_destruction_no_cards
+    elsif
+      player1.deck.cards.length <= 1 || player2.deck.cards.length <= 1 && player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+        :war_no_cards
     elsif
       player1.deck.cards.length > 2 && player2.deck.cards.length > 2 && player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
       :mutually_assured_destruction
@@ -36,8 +39,10 @@ class Turn
 
 
   def winner
-    return  @player1 if type == :end_of_war && player2.deck.cards.length <= 2
-    return  @player2 if type == :end_of_war && player1.deck.cards.length <= 2
+    return @player1 if type == :mutually_assured_destruction_no_cards && player2.deck.cards.length <= 2
+    return @player2 if type == :mutually_assured_destruction_no_cards && player1.deck.cards.length <= 2
+    return @player1 if type == :war_no_cards && player2.deck.cards.length <= 1
+    return @player2 if type == :war_no_cards && player1.deck.cards.length <= 1
     return @player1 if type == :basic && player1.deck.rank_of_card_at(0) > player2.deck.rank_of_card_at(0)
     return @player2 if type == :basic && player2.deck.rank_of_card_at(0) > player1.deck.rank_of_card_at(0)
     return @player1 if type == :war && player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
@@ -58,9 +63,17 @@ class Turn
         @spoils_of_war << player2.deck.remove_card
       end
 
-    elsif type == :end_of_war
+    elsif type == :war_no_cards
+      2.times do
+      @spoils_of_war << player1.deck.remove_card
+      @spoils_of_war << player2.deck.remove_card
+    end
+
+    elsif type == :mutually_assured_destruction_no_cards
+      3.times do
         @spoils_of_war << player1.deck.remove_card
         @spoils_of_war << player2.deck.remove_card
+      end 
 
     else
       3.times do
