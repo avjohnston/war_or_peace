@@ -7,8 +7,8 @@ class Card
     @rank = rank
   end
 
-  def print_card(index)
-    puts "#{@rank} of #{@suit}s"
+  def print_card
+    return "#{@rank} of #{@suit.capitalize}s"
   end
 
 end
