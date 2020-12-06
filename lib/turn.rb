@@ -18,7 +18,11 @@ class Turn
   end
 
   def type
-    if player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+    if
+    player1.deck.cards.length <= 2 || player2.deck.cards.length <= 2 && player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
+      :end_of_war
+    elsif
+      player1.deck.cards.length > 2 && player2.deck.cards.length > 2 && player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0) && player1.deck.rank_of_card_at(2) == player2.deck.rank_of_card_at(2)
       :mutually_assured_destruction
     elsif
       player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
@@ -27,6 +31,11 @@ class Turn
       player1.deck.rank_of_card_at(0) != player2.deck.rank_of_card_at(0)
       :basic
     end
+
+
+
+
+
   end
 
 
@@ -36,6 +45,8 @@ class Turn
     return @player1 if type == :war && player1.deck.rank_of_card_at(2) > player2.deck.rank_of_card_at(2)
     return @player2 if type == :war && player2.deck.rank_of_card_at(2) > player1.deck.rank_of_card_at(2)
     return "No Winner" if type == :mutually_assured_destruction
+    return "#{player1.name} has won the game!" if type == :end_of_war && player2.deck.cards.length <= 2
+    return "#{player2.name} has won the game!" if type == :end_of_war && player1.deck.cards.length <= 2
   end
 
 
