@@ -7,5 +7,8 @@ class Card
     @rank = rank
   end
 
+  def print_card(index)
+    puts "#{@rank} of #{@suit}s"
+  end
 
 end

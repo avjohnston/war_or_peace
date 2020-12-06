@@ -36,9 +36,11 @@ class Game
       puts "Turn #{@turn_counter}: #{turn.type.capitalize}"
       if winner == "No Winner"
         puts winner
-      else
-        puts "P1 ~ #{@player1.deck.cards[0]} vs P2 ~ #{@player2.deck.cards[0]}"
-        puts "#{winner.name} has won #{turn.spoils_of_war} cards."
+      elsif turn.type == :basic
+        # puts "P1 ~ #{@player1.deck.cards[0]} vs P2 ~ #{@player2.deck.cards[0]}"
+        puts "#{winner.name} has won 2 cards."
+      else turn.type == :war || :war_no_cards
+        puts "#{winner.name} has won 6 cards."
       end
       turn.pile_cards
       turn.award_spoils(winner)
